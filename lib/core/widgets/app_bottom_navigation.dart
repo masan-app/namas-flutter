@@ -18,7 +18,7 @@ class AppBottomNavigation extends StatelessWidget {
       backgroundColor: Theme.of(context).colorScheme.surface,
       elevation: 8,
       shadowColor: Colors.black12,
-      height: 65,
+      height: 50,
       labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
       destinations: const [
         NavigationDestination(
