@@ -19,7 +19,7 @@ class HomePage extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.only(left: 16, top: 12, bottom: 12),
-              child: Text('홈', style: textTheme.titleLarge),
+              child: Text('메인', style: textTheme.titleLarge),
             ),
             Expanded(
               child: ListView(
