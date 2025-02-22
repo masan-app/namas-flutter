@@ -17,9 +17,9 @@ class HomePage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             const Padding(
-              padding: EdgeInsets.only(left: 20, top: 12, bottom: 12),
+              padding: EdgeInsets.only(left: 16, top: 12, bottom: 12),
               child: Text(
-                'Home',
+                '홈',
                 style: TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,

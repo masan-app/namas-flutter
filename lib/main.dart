@@ -5,7 +5,6 @@ import 'core/widgets/app_bottom_navigation.dart';
 import 'features/home/presentation/pages/home_page.dart';
 import 'features/community/presentation/pages/community_page.dart';
 import 'features/profile/presentation/pages/profile_page.dart';
-import 'core/widgets/app_header.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
