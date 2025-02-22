@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';  // SystemChrome을 위해 추가
 import 'package:intl/date_symbol_data_local.dart';
 import 'package:provider/provider.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -29,6 +30,13 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final themeProvider = context.watch<ThemeProvider>();
+    
+    // 테마에 따라 상태바 스타일 변경
+    SystemChrome.setSystemUIOverlayStyle(
+      themeProvider.themeMode == ThemeMode.dark
+          ? SystemUiOverlayStyle.light  // 다크모드: 흰색 아이콘
+          : SystemUiOverlayStyle.dark    // 라이트모드: 검은색 아이콘
+    );
     
     return MaterialApp(
       title: '휘트니스',
