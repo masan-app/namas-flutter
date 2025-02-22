@@ -1,0 +1,194 @@
+// Flutter App Expert .cursorrules
+
+// Flexibility Notice
+// Note: This is a recommended project structure, but be flexible and adapt to existing project structures.
+// Do not enforce these structural patterns if the project follows a different organization.
+// Focus on maintaining consistency with the existing project architecture while applying Flutter best practices.
+
+// Flutter Best Practices
+
+const flutterBestPractices = [
+  "Adapt to existing project architecture while maintaining clean code principles",
+  "Use Flutter 3.x features and Material 3 design",
+  "Implement clean architecture with BLoC pattern",
+  "Follow proper state management principles",
+  "Use proper dependency injection with GetIt",
+  "Implement proper error handling",
+  "Follow platform-specific design guidelines",
+  "Use proper localization techniques",
+  "Ensure accessibility and responsive design",
+];
+
+// Project Structure
+
+const projectStructure = `
+lib/
+  core/
+    constants/
+    theme/
+    utils/
+    widgets/
+  features/
+    home/
+      data/
+        datasources/
+        models/
+        repositories/
+      domain/
+        entities/
+        repositories/
+        usecases/
+      presentation/
+        bloc/
+        pages/
+        widgets/
+    community/
+      data/
+        datasources/
+        models/
+        repositories/
+      domain/
+        entities/
+        repositories/
+        usecases/
+      presentation/
+        bloc/
+        pages/
+        widgets/
+    groups/
+      data/
+        datasources/
+        models/
+        repositories/
+      domain/
+        entities/
+        repositories/
+        usecases/
+      presentation/
+        bloc/
+        pages/
+        widgets/
+    profile/
+      data/
+        datasources/
+        models/
+        repositories/
+      domain/
+        entities/
+        repositories/
+        usecases/
+      presentation/
+        bloc/
+        pages/
+        widgets/
+    auth/
+      data/
+        datasources/
+        models/
+        repositories/
+      domain/
+        entities/
+        repositories/
+        usecases/
+      presentation/
+        bloc/
+        pages/
+        widgets/
+  l10n/
+  main.dart
+test/
+  unit/
+  widget/
+  integration/
+`;
+
+// Coding Guidelines
+
+const codingGuidelines = `
+1. Use Dart null safety best practices
+2. Implement proper error handling with Either type (functional programming)
+3. Follow naming conventions: camelCase for variables/methods, PascalCase for classes
+4. Use proper widget composition and separation of concerns
+5. Implement routing using GoRouter
+6. Apply proper form validation using Flutter Form
+7. Manage state with BLoC pattern and Stream
+8. Apply dependency injection using GetIt
+9. Organize assets (images, fonts) in /assets directory
+10. Write unit, widget, and integration tests
+`;
+
+// Widget Guidelines
+
+const widgetGuidelines = `
+1. Keep widgets small, reusable, and focused on a single responsibility
+2. Use const constructors where applicable for performance
+3. Implement proper widget keys for stateful widgets
+4. Follow Material 3 design principles
+5. Apply responsive layouts using MediaQuery and LayoutBuilder
+6. Optimize build methods and avoid unnecessary rebuilds
+7. Ensure accessibility (a11y) compliance: labels, contrast, tap areas
+8. Use Flutter's built-in animations for transitions
+`;
+
+// Performance Guidelines
+
+const performanceGuidelines = `
+1. Implement image caching using CachedNetworkImage
+2. Optimize ListView/GridView with builder constructors and item caching
+3. Minimize widget rebuilds using const and proper key usage
+4. Use Lazy loading for data-heavy pages
+5. Implement proper memory management (dispose controllers, streams)
+6. Optimize API calls with pagination and lazy fetching
+7. Use Isolates for heavy computations
+`;
+
+// Testing Guidelines
+
+const testingGuidelines = `
+1. Write unit tests for business logic (usecases, repositories)
+2. Implement widget tests for UI components
+3. Use integration tests for full app flows (e.g., login to profile navigation)
+4. Mock dependencies using mockito or mocktail
+5. Achieve at least 80% code coverage
+6. Apply CI/CD testing with GitHub Actions or GitLab CI
+7. Follow proper naming conventions: [feature]_test.dart
+`;
+
+// UI/UX Implementation Guidelines
+
+const uiUxGuidelines = `
+1. Apply primary color (#1f7a42) for buttons and interactive elements
+2. Use complementary color (#ff914d) for call-to-action buttons
+3. Implement a BottomNavigationBar for main navigation (Home, Community, Groups, Profile, Settings)
+4. Apply responsive design breakpoints:
+   - Mobile: 320px
+   - Tablet: 768px
+   - Desktop: 1024px
+   - Wide: 1440px
+5. Use Material 3 components for consistent UI
+6. Apply hover and pressed states for interactive elements
+7. Follow the TailwindCSS color palette defined in the UI/UX guide
+8. Ensure all screens are accessible with proper contrast and focus management
+`;
+
+// Interaction Patterns
+
+const interactionPatterns = `
+1. Implement smooth page transitions using PageRouteBuilder
+2. Apply ripple effects on button taps using InkWell
+3. Use hover effects on desktop/tablet for interactive elements
+4. Apply toast/snackbar for feedback messages
+5. Use animations for state changes (e.g., expanding cards, list additions)
+6. Implement pull-to-refresh where applicable (e.g., post lists)
+`;
+
+// Localization & Accessibility
+
+const localizationAccessibility = `
+1. Implement localization using flutter_localizations and intl
+2. Provide support for at least English and Korean
+3. Ensure screen reader compatibility (semantic widgets, labels)
+4. Implement dynamic font sizing with MediaQuery
+5. Use high-contrast colors for important elements
+6. Ensure tappable areas are at least 48x48 pixels
+`;
