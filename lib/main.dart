@@ -1,15 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'package:provider/provider.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'core/theme/app_colors.dart';
+import 'core/providers/theme_provider.dart';
 import 'core/widgets/app_bottom_navigation.dart';
 import 'features/home/presentation/pages/home_page.dart';
 import 'features/community/presentation/pages/community_page.dart';
-import 'features/profile/presentation/pages/profile_page.dart';
+import 'features/settings/presentation/pages/settings_page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await initializeDateFormatting('ko_KR', null);
-  runApp(const MyApp());
+  
+  final prefs = await SharedPreferences.getInstance();
+  
+  runApp(
+    ChangeNotifierProvider(
+      create: (_) => ThemeProvider(prefs),
+      child: const MyApp(),
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -17,6 +28,8 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final themeProvider = context.watch<ThemeProvider>();
+    
     return MaterialApp(
       title: '휘트니스',
       theme: ThemeData(
@@ -27,8 +40,19 @@ class MyApp extends StatelessWidget {
           surface: AppColors.lightSurface,
           background: AppColors.lightBackground,
           error: AppColors.error,
+          onSurface: AppColors.neutral900,
+          onBackground: AppColors.neutral900,
         ),
         scaffoldBackgroundColor: AppColors.lightBackground,
+        navigationBarTheme: NavigationBarThemeData(
+          indicatorColor: AppColors.primary500.withOpacity(0.1),
+          labelTextStyle: MaterialStateProperty.resolveWith((states) {
+            if (states.contains(MaterialState.selected)) {
+              return TextStyle(color: AppColors.primary500);
+            }
+            return null;
+          }),
+        ),
         textTheme: Typography.material2021().black.copyWith(
           titleLarge: const TextStyle(
             fontSize: 28,
@@ -50,8 +74,19 @@ class MyApp extends StatelessWidget {
           surface: AppColors.darkSurface,
           background: AppColors.darkBackground,
           error: AppColors.error,
+          onSurface: Colors.white,
+          onBackground: Colors.white,
         ),
         scaffoldBackgroundColor: AppColors.darkBackground,
+        navigationBarTheme: NavigationBarThemeData(
+          indicatorColor: AppColors.primary500.withOpacity(0.1),
+          labelTextStyle: MaterialStateProperty.resolveWith((states) {
+            if (states.contains(MaterialState.selected)) {
+              return TextStyle(color: AppColors.primary500);
+            }
+            return null;
+          }),
+        ),
         textTheme: Typography.material2021().white.copyWith(
           titleLarge: const TextStyle(
             fontSize: 28,
@@ -65,6 +100,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
+      themeMode: themeProvider.themeMode,
       home: const MainPage(),
     );
   }
@@ -83,7 +119,7 @@ class _MainPageState extends State<MainPage> {
   final List<Widget> _pages = [
     const HomePage(),
     const CommunityPage(),
-    const ProfilePage(),
+    const SettingsPage(),
   ];
 
   @override

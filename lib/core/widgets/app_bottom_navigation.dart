@@ -15,25 +15,26 @@ class AppBottomNavigation extends StatelessWidget {
     return NavigationBar(
       selectedIndex: currentIndex,
       onDestinationSelected: onTap,
-      backgroundColor: Colors.white,
+      backgroundColor: Theme.of(context).colorScheme.surface,
       elevation: 8,
       shadowColor: Colors.black12,
       height: 65,
+      labelBehavior: NavigationDestinationLabelBehavior.alwaysHide,
       destinations: const [
         NavigationDestination(
-          icon: Icon(Icons.home_outlined),
-          selectedIcon: Icon(Icons.home),
-          label: '홈',
+          icon: Icon(Icons.dashboard_outlined),
+          selectedIcon: Icon(Icons.dashboard),
+          label: '',
         ),
         NavigationDestination(
-          icon: Icon(Icons.forum_outlined),
-          selectedIcon: Icon(Icons.forum),
-          label: '커뮤니티',
+          icon: Icon(Icons.chat_bubble_outline_rounded),
+          selectedIcon: Icon(Icons.chat_bubble_rounded),
+          label: '',
         ),
         NavigationDestination(
-          icon: Icon(Icons.person_outline),
-          selectedIcon: Icon(Icons.person),
-          label: '프로필',
+          icon: Icon(Icons.tune_rounded),
+          selectedIcon: Icon(Icons.tune_rounded),
+          label: '',
         ),
       ],
     );
