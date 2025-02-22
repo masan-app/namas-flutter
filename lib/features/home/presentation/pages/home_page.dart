@@ -10,33 +10,22 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     final posts = DummyData.getPosts();
     final meetings = DummyData.getMeetings();
+    final textTheme = Theme.of(context).textTheme;
 
     return Scaffold(
       body: SafeArea(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Padding(
-              padding: EdgeInsets.only(left: 16, top: 12, bottom: 12),
-              child: Text(
-                '홈',
-                style: TextStyle(
-                  fontSize: 28,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
+            Padding(
+              padding: const EdgeInsets.only(left: 16, top: 12, bottom: 12),
+              child: Text('홈', style: textTheme.titleLarge),
             ),
             Expanded(
               child: ListView(
                 padding: const EdgeInsets.all(16),
                 children: [
-                  const Text(
-                    '추천 모임',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.bold,
-                    ),
-                  ),
+                  Text('추천 모임', style: textTheme.titleMedium),
                   const SizedBox(height: 12),
                   SizedBox(
                     height: 180,

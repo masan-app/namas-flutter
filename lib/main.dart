@@ -20,10 +20,50 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: '휘트니스',
       theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(
-          seedColor: AppColors.primary500,
-        ),
         useMaterial3: true,
+        colorScheme: ColorScheme.light(
+          primary: AppColors.primary500,
+          secondary: AppColors.secondary500,
+          surface: AppColors.lightSurface,
+          background: AppColors.lightBackground,
+          error: AppColors.error,
+        ),
+        scaffoldBackgroundColor: AppColors.lightBackground,
+        textTheme: Typography.material2021().black.copyWith(
+          titleLarge: const TextStyle(
+            fontSize: 28,
+            fontWeight: FontWeight.bold,
+            color: AppColors.lightText,
+          ),
+          titleMedium: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: AppColors.lightText,
+          ),
+        ),
+      ),
+      darkTheme: ThemeData(
+        useMaterial3: true,
+        colorScheme: ColorScheme.dark(
+          primary: AppColors.primary500,
+          secondary: AppColors.secondary500,
+          surface: AppColors.darkSurface,
+          background: AppColors.darkBackground,
+          error: AppColors.error,
+        ),
+        scaffoldBackgroundColor: AppColors.darkBackground,
+        textTheme: Typography.material2021().white.copyWith(
+          titleLarge: const TextStyle(
+            fontSize: 28,
+            fontWeight: FontWeight.bold,
+            color: AppColors.darkText,
+          ),
+          titleMedium: const TextStyle(
+            fontSize: 18,
+            fontWeight: FontWeight.bold,
+            color: AppColors.darkText,
+          ),
+        ),
       ),
       home: const MainPage(),
     );
