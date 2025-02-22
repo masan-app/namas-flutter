@@ -57,13 +57,15 @@ class MyApp extends StatelessWidget {
           titleLarge: const TextStyle(
             fontSize: 28,
             fontWeight: FontWeight.bold,
-            color: AppColors.lightText,
+            color: AppColors.neutral900,
           ),
           titleMedium: const TextStyle(
             fontSize: 18,
             fontWeight: FontWeight.bold,
-            color: AppColors.lightText,
+            color: AppColors.neutral900,
           ),
+          bodyLarge: const TextStyle(color: AppColors.neutral900),
+          bodyMedium: const TextStyle(color: AppColors.neutral900),
         ),
       ),
       darkTheme: ThemeData(
@@ -98,6 +100,8 @@ class MyApp extends StatelessWidget {
             fontWeight: FontWeight.bold,
             color: AppColors.darkText,
           ),
+          bodyLarge: const TextStyle(color: AppColors.darkText),
+          bodyMedium: const TextStyle(color: AppColors.darkText),
         ),
       ),
       themeMode: themeProvider.themeMode,

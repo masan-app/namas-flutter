@@ -17,6 +17,9 @@ class MeetingCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+    final colorScheme = Theme.of(context).colorScheme;
+
     return AppCard(
       onTap: onTap,
       padding: const EdgeInsets.all(12),
@@ -28,9 +31,8 @@ class MeetingCard extends StatelessWidget {
               Expanded(
                 child: Text(
                   meeting.title,
-                  style: const TextStyle(
+                  style: textTheme.titleMedium?.copyWith(
                     fontSize: 16,
-                    fontWeight: FontWeight.w600,
                   ),
                 ),
               ),
@@ -42,11 +44,12 @@ class MeetingCard extends StatelessWidget {
             ],
           ),
           const SizedBox(height: 8),
-          _buildInfoRow(Icons.calendar_today, _formatDate(meeting.meetingDate)),
+          _buildInfoRow(context, Icons.calendar_today, _formatDate(meeting.meetingDate)),
           const SizedBox(height: 6),
-          _buildInfoRow(Icons.location_on, meeting.location),
+          _buildInfoRow(context, Icons.location_on, meeting.location),
           const SizedBox(height: 6),
           _buildInfoRow(
+            context,
             Icons.people,
             '${meeting.currentParticipants}/${meeting.maxParticipants}명',
           ),
@@ -61,8 +64,7 @@ class MeetingCard extends StatelessWidget {
               const SizedBox(width: 8),
               Text(
                 meeting.organizerName,
-                style: const TextStyle(
-                  fontSize: 14,
+                style: textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.w500,
                 ),
               ),
@@ -73,12 +75,19 @@ class MeetingCard extends StatelessWidget {
     );
   }
 
-  Widget _buildInfoRow(IconData icon, String text) {
+  Widget _buildInfoRow(BuildContext context, IconData icon, String text) {
     return Row(
       children: [
-        Icon(icon, size: 16, color: Colors.grey),
+        Icon(
+          icon, 
+          size: 16, 
+          color: Theme.of(context).colorScheme.onSurface.withOpacity(0.6),
+        ),
         const SizedBox(width: 8),
-        Text(text),
+        Text(
+          text,
+          style: Theme.of(context).textTheme.bodyMedium,
+        ),
       ],
     );
   }

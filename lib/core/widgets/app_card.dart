@@ -12,7 +12,7 @@ class AppCard extends StatelessWidget {
     super.key,
     required this.child,
     this.padding = const EdgeInsets.all(16),
-    this.backgroundColor = Colors.white,
+    this.backgroundColor,
     this.elevation = 1,
     this.onTap,
     this.borderRadius,
@@ -21,7 +21,7 @@ class AppCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Material(
-      color: backgroundColor,
+      color: backgroundColor ?? Theme.of(context).colorScheme.surface,
       elevation: elevation,
       borderRadius: borderRadius ?? BorderRadius.circular(12),
       child: InkWell(

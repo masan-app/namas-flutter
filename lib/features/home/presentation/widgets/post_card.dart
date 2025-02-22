@@ -22,7 +22,7 @@ class PostCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          _buildHeader(),
+          _buildHeader(context),
           const SizedBox(height: 12),
           Text(
             post.title,
@@ -46,7 +46,10 @@ class PostCard extends StatelessWidget {
     );
   }
 
-  Widget _buildHeader() {
+  Widget _buildHeader(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
+    final colorScheme = Theme.of(context).colorScheme;
+
     return Row(
       children: [
         AppAvatar(
@@ -61,15 +64,14 @@ class PostCard extends StatelessWidget {
             children: [
               Text(
                 post.authorName,
-                style: const TextStyle(
+                style: textTheme.bodyMedium?.copyWith(
                   fontWeight: FontWeight.w500,
                 ),
               ),
               Text(
                 timeago.format(post.createdAt, locale: 'ko'),
-                style: const TextStyle(
-                  fontSize: 12,
-                  color: Colors.grey,
+                style: textTheme.bodySmall?.copyWith(
+                  color: colorScheme.onSurface.withOpacity(0.6),
                 ),
               ),
             ],
