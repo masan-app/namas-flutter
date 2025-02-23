@@ -48,6 +48,7 @@ class _CommunityEditorPageState extends State<CommunityEditorPage> {
                     ? colorScheme.primary 
                     : colorScheme.onSurface.withOpacity(0.6),
                 padding: const EdgeInsets.symmetric(horizontal: 12),
+                textStyle: const TextStyle(fontSize: 17),
               ),
               child: const Text('커뮤니티'),
             ),
@@ -65,6 +66,7 @@ class _CommunityEditorPageState extends State<CommunityEditorPage> {
                     ? colorScheme.primary 
                     : colorScheme.onSurface.withOpacity(0.6),
                 padding: const EdgeInsets.symmetric(horizontal: 12),
+                textStyle: const TextStyle(fontSize: 17),
               ),
               child: const Text('모임'),
             ),
@@ -74,8 +76,9 @@ class _CommunityEditorPageState extends State<CommunityEditorPage> {
           onPressed: () => Navigator.pop(context),
           child: Text(
             '취소',
-            style: textTheme.bodyMedium?.copyWith(
+            style: textTheme.bodyLarge?.copyWith(
               color: colorScheme.onSurface.withOpacity(0.8),
+              fontSize: 17,
             ),
           ),
         ),
@@ -87,83 +90,100 @@ class _CommunityEditorPageState extends State<CommunityEditorPage> {
             },
             child: Text(
               '게시',
-              style: textTheme.bodyMedium?.copyWith(
+              style: textTheme.bodyLarge?.copyWith(
                 color: colorScheme.primary,
                 fontWeight: FontWeight.w600,
+                fontSize: 17,
               ),
             ),
           ),
+          const SizedBox(width: 16),
         ],
       ),
       body: Column(
         children: [
+          if (!_isCommunityPost) ...[
+            ListTile(
+              leading: Icon(
+                Icons.calendar_today,
+                size: 20,
+                color: colorScheme.primary,
+              ),
+              title: Text(
+                _meetingDateTime != null 
+                    ? DateFormat('M월 d일 (E) HH:mm', 'ko').format(_meetingDateTime!)
+                    : '날짜와 시간 선택',
+                style: textTheme.bodyMedium,
+              ),
+              onTap: () async {
+                final date = await showDatePicker(
+                  context: context,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime.now(),
+                  lastDate: DateTime.now().add(const Duration(days: 365)),
+                );
+                if (date != null) {
+                  final time = await showTimePicker(
+                    context: context,
+                    initialTime: TimeOfDay.now(),
+                  );
+                  if (time != null) {
+                    setState(() {
+                      _meetingDateTime = DateTime(
+                        date.year, date.month, date.day,
+                        time.hour, time.minute,
+                      );
+                    });
+                  }
+                }
+              },
+            ),
+            TextField(
+              controller: _locationController,
+              decoration: InputDecoration(
+                hintText: '장소',
+                prefixIcon: Icon(
+                  Icons.location_on,
+                  size: 20,
+                  color: colorScheme.primary,
+                ),
+                border: InputBorder.none,
+                contentPadding: const EdgeInsets.all(16),
+              ),
+            ),
+            TextField(
+              controller: _maxParticipantsController,
+              decoration: InputDecoration(
+                hintText: '모집 인원',
+                prefixIcon: Icon(
+                  Icons.people,
+                  size: 20,
+                  color: colorScheme.primary,
+                ),
+                border: InputBorder.none,
+                contentPadding: const EdgeInsets.all(16),
+              ),
+              keyboardType: TextInputType.number,
+            ),
+          ],
           Expanded(
             child: ListView(
               children: [
-                if (!_isCommunityPost) ...[
-                  ListTile(
-                    leading: Icon(
-                      Icons.calendar_today,
-                      size: 20,
-                      color: colorScheme.primary,
-                    ),
-                    title: Text(
-                      _meetingDateTime != null 
-                          ? DateFormat('M월 d일 (E) HH:mm', 'ko').format(_meetingDateTime!)
-                          : '날짜와 시간 선택',
-                      style: textTheme.bodyMedium,
-                    ),
-                    onTap: () async {
-                      final date = await showDatePicker(
-                        context: context,
-                        initialDate: DateTime.now(),
-                        firstDate: DateTime.now(),
-                        lastDate: DateTime.now().add(const Duration(days: 365)),
-                      );
-                      if (date != null) {
-                        final time = await showTimePicker(
-                          context: context,
-                          initialTime: TimeOfDay.now(),
-                        );
-                        if (time != null) {
-                          setState(() {
-                            _meetingDateTime = DateTime(
-                              date.year, date.month, date.day,
-                              time.hour, time.minute,
-                            );
-                          });
-                        }
-                      }
-                    },
-                  ),
-                  TextField(
-                    controller: _locationController,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  child: TextField(
+                    controller: _titleController,
                     decoration: InputDecoration(
-                      hintText: '장소',
-                      prefixIcon: Icon(
-                        Icons.location_on,
-                        size: 20,
-                        color: colorScheme.primary,
-                      ),
+                      hintText: _isCommunityPost ? '제목' : '모임 제목',
                       border: InputBorder.none,
-                      contentPadding: const EdgeInsets.all(16),
+                      contentPadding: const EdgeInsets.symmetric(vertical: 16),
+                    ),
+                    style: textTheme.titleMedium?.copyWith(
+                      fontWeight: FontWeight.w600,
                     ),
                   ),
-                  TextField(
-                    controller: _maxParticipantsController,
-                    decoration: InputDecoration(
-                      hintText: '모집 인원',
-                      prefixIcon: Icon(
-                        Icons.people,
-                        size: 20,
-                        color: colorScheme.primary,
-                      ),
-                      border: InputBorder.none,
-                      contentPadding: const EdgeInsets.all(16),
-                    ),
-                    keyboardType: TextInputType.number,
-                  ),
-                ],
+                ),
+                const Divider(height: 1),
                 Padding(
                   padding: const EdgeInsets.all(16),
                   child: TextField(
