@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../widgets/community_post_card.dart';
+import '../pages/community_editor_page.dart';
 
 class CommunityPage extends StatelessWidget {
   const CommunityPage({super.key});
@@ -16,24 +17,42 @@ class CommunityPage extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
-              child: Row(
-                children: [
-                  CircleAvatar(
-                    radius: 18,
-                    backgroundColor: colorScheme.onBackground.withOpacity(0.1),
-                    child: Icon(
-                      Icons.person_outline,
-                      color: colorScheme.onBackground.withOpacity(0.7),
+              child: Material(
+                color: colorScheme.onBackground.withOpacity(0.05),
+                borderRadius: BorderRadius.circular(8),
+                child: InkWell(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const CommunityEditorPage(),
+                      ),
+                    );
+                  },
+                  borderRadius: BorderRadius.circular(8),
+                  child: Padding(
+                    padding: const EdgeInsets.all(12),
+                    child: Row(
+                      children: [
+                        CircleAvatar(
+                          radius: 18,
+                          backgroundColor: colorScheme.onBackground.withOpacity(0.1),
+                          child: Icon(
+                            Icons.person_outline,
+                            color: colorScheme.onBackground.withOpacity(0.7),
+                          ),
+                        ),
+                        const SizedBox(width: 12),
+                        Text(
+                          "무슨 생각을 하고 계신가요?",
+                          style: textTheme.bodyLarge?.copyWith(
+                            color: colorScheme.onBackground.withOpacity(0.7),
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  const SizedBox(width: 12),
-                  Text(
-                    "무슨 생각을 하고 계신가요?",
-                    style: textTheme.bodyLarge?.copyWith(
-                      color: colorScheme.onBackground.withOpacity(0.7),
-                    ),
-                  ),
-                ],
+                ),
               ),
             ),
             Divider(
